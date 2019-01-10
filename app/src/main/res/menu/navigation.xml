@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/bottom_navigation_home"
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_bookmark"
-        android:icon="@drawable/ic_bookmark_border_black_24dp"
+        android:icon="@drawable/bottom_navigation_bookmark"
         android:title="@string/title_bookmark" />
 
     <item
@@ -17,8 +17,8 @@
         android:title="@string/title_search" />
 
     <item
-        android:id="@+id/navigation_location_on"
-        android:icon="@drawable/ic_location_on_black_24dp"
+        android:id="@+id/navigation_location"
+        android:icon="@drawable/bottom_navigation_location"
         android:title="@string/title_location_on" />
 
 </menu>

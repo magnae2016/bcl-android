@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_search:
                     mTextMessage.setText(R.string.title_search);
                     return true;
-                case R.id.navigation_location_on:
+                case R.id.navigation_location:
                     mTextMessage.setText(R.string.title_location_on);
                     return true;
             }
