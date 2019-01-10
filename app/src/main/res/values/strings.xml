@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">부천시립\n도서관</string>
     <string name="title_home">홈</string>
-    <string name="title_bookmark">북마크</string>
-    <string name="title_search">통합검색</string>
-    <string name="title_location_on">도서관위치</string>
+    <string name="title_bookmark">관심도서</string>
+    <string name="title_search">검색</string>
+    <string name="title_location_on">도서관</string>
 </resources>
