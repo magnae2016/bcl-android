@@ -1,5 +1,8 @@
 package com.magnae.bcl;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -7,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,21 +21,28 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment = null;
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     getSupportActionBar().setTitle(R.string.title_home);
-                    return true;
+                    fragment = new HomeFragment();
+                    break;
                 case R.id.navigation_bookmark:
                     getSupportActionBar().setTitle(R.string.title_bookmark);
-                    return true;
+                    fragment = new BookmarkFragment();
+                    break;
                 case R.id.navigation_search:
                     getSupportActionBar().setTitle(R.string.title_search);
-                    return true;
+                    fragment = new SearchFragment();
+                    break;
                 case R.id.navigation_location:
                     getSupportActionBar().setTitle(R.string.title_location_on);
-                    return true;
+                    fragment = new LocationFragment();
+                    break;
             }
-            return false;
+
+            return replaceFragment(fragment);
         }
     };
 
@@ -47,8 +56,24 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle(R.string.title_home);
 
+        replaceFragment(new HomeFragment());
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private boolean replaceFragment(Fragment fragment) {
+        if (fragment != null) {
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            Fragment newFragment = fragment;
+            fragmentTransaction.replace(R.id.fragment_container, newFragment);
+            fragmentTransaction.commit();
+
+            return true;
+        }
+        return false;
     }
 
 }
