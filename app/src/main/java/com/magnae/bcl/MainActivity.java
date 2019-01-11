@@ -13,8 +13,6 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar myToolbar;
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -25,19 +23,15 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    getSupportActionBar().setTitle(R.string.title_home);
                     fragment = new HomeFragment();
                     break;
                 case R.id.navigation_bookmark:
-                    getSupportActionBar().setTitle(R.string.title_bookmark);
                     fragment = new BookmarkFragment();
                     break;
                 case R.id.navigation_search:
-                    getSupportActionBar().setTitle(R.string.title_search);
                     fragment = new SearchFragment();
                     break;
                 case R.id.navigation_location:
-                    getSupportActionBar().setTitle(R.string.title_location_on);
                     fragment = new LocationFragment();
                     break;
             }
@@ -51,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle(R.string.title_home);
 
         replaceFragment(new HomeFragment());
 

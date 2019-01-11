@@ -3,6 +3,8 @@ package com.magnae.bcl;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
  */
 public class LocationFragment extends Fragment {
 
+    private Toolbar myToolbar;
 
     public LocationFragment() {
         // Required empty public constructor
@@ -23,7 +26,15 @@ public class LocationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_location, container, false);
+        View view = inflater.inflate(R.layout.fragment_location, container, false);
+
+        myToolbar = (Toolbar) view.findViewById(R.id.my_toolbar);
+
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(myToolbar);
+        activity.getSupportActionBar().setTitle(R.string.title_location_on);
+
+        return view;
     }
 
 }
