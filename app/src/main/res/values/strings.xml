@@ -4,4 +4,13 @@
     <string name="title_bookmark">관심도서</string>
     <string name="title_search">검색</string>
     <string name="title_location_on">도서관</string>
+
+    <!-- Toolbar menu text -->
+    <string name="menu_settings">설정</string>
+    <string name="menu_refresh">새로고침</string>
+    <string name="menu_search">검색</string>
+    <string name="menu_person">사용자</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
