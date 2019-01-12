@@ -3,6 +3,9 @@ package com.magnae.bcl;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +18,9 @@ import android.support.v7.widget.Toolbar;
  */
 public class HomeFragment extends Fragment {
 
-    private Toolbar myToolbar;
-
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,11 +28,19 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        myToolbar = (Toolbar) view.findViewById(R.id.my_toolbar);
-
         AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.setSupportActionBar(myToolbar);
-        activity.getSupportActionBar().setTitle(R.string.title_home);
+
+        TabLayout tabItems = view.findViewById(R.id.tabItems);
+        ViewPager fragmentsPager = view.findViewById(R.id.fragmentsPager);
+        fragmentsPager.setAdapter(new PagerAdapter(activity.getSupportFragmentManager()));
+        tabItems.setupWithViewPager(fragmentsPager);
+
+        for (int i = 0; i < tabItems.getTabCount(); i++) {
+            TabLayout.Tab tab = tabItems.getTabAt(i);
+            if (tab != null) {
+                tab.setText("menu" + i);
+            }
+        }
 
         return view;
     }
