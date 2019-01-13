@@ -3,12 +3,10 @@ package com.magnae.bcl;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.text.HtmlCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 
-public class PagerAdapter extends FragmentPagerAdapter {
+public class PagerAdapter extends FragmentStatePagerAdapter {
 
     private static final CharSequence title_recommendation = HtmlCompat.fromHtml("<font face=\"sans-serif-smallcaps\"><small><sup><small>&#35;</small></sup></small></font>추천", HtmlCompat.FROM_HTML_MODE_COMPACT);
     private static final CharSequence title_popularity = HtmlCompat.fromHtml("<font face=\"sans-serif-smallcaps\"><small><sup><small>&#35;</small></sup></small></font>인기", HtmlCompat.FROM_HTML_MODE_COMPACT);
