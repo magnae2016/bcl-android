@@ -35,13 +35,6 @@ public class HomeFragment extends Fragment {
         fragmentsPager.setAdapter(new PagerAdapter(activity.getSupportFragmentManager()));
         tabItems.setupWithViewPager(fragmentsPager);
 
-        for (int i = 0; i < tabItems.getTabCount(); i++) {
-            TabLayout.Tab tab = tabItems.getTabAt(i);
-            if (tab != null) {
-                tab.setText("menu" + i);
-            }
-        }
-
         return view;
     }
 

@@ -10,12 +10,18 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tabItems"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintBottom_toTopOf="@id/fragmentsPager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@android:color/black"
+        app:tabTextAppearance="@style/AppTabTitleTextAppearance"
+        app:tabTextColor="@color/colorPrimaryAlpha"
+        app:tabUnboundedRipple="true">
 
     </android.support.design.widget.TabLayout>
 
