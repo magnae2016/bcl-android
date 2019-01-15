@@ -11,11 +11,18 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LocationFragment extends Fragment {
+public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
     private Toolbar myToolbar;
 
@@ -42,6 +49,11 @@ public class LocationFragment extends Fragment {
         activity.setSupportActionBar(myToolbar);
         activity.getSupportActionBar().setTitle(R.string.title_location_on);
 
+        MapView mapView = (MapView) view.findViewById(R.id.map);
+        mapView.onCreate(savedInstanceState);
+        mapView.onResume();
+        mapView.getMapAsync(this);
+
         return view;
     }
 
@@ -51,4 +63,11 @@ public class LocationFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        LatLng namsan = new LatLng(37.551186, 126.988227);
+        googleMap.addMarker(new MarkerOptions().position(namsan).title("N서울타워"));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(namsan, 15));
+    }
 }

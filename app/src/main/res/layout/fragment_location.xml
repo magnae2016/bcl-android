@@ -15,13 +15,11 @@
         android:gravity="top"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/title_location_on" />
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:name="com.google.android.gms.maps.MapFragment" />
 
     </RelativeLayout>
 
