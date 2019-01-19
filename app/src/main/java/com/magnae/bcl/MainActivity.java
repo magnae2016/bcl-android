@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             Fragment newFragment = fragment;
             fragmentTransaction.replace(R.id.fragment_container, newFragment);
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
 
             return true;
