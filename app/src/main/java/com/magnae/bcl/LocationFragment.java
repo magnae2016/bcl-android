@@ -20,13 +20,13 @@ import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Align;
 import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.overlay.OverlayImage;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
-    private Toolbar myToolbar;
     private MapFragment mapFragment;
 
 
@@ -39,7 +39,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
 
         setRetainInstance(true);
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -48,11 +47,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
-        myToolbar = (Toolbar) view.findViewById(R.id.my_toolbar);
-
         AppCompatActivity activity = (AppCompatActivity) getActivity();
-        activity.setSupportActionBar(myToolbar);
-        activity.getSupportActionBar().setTitle(R.string.title_location_on);
 
         NaverMapOptions options = new NaverMapOptions()
                 .camera(new CameraPosition(new LatLng(37.503198, 126.775964), 11.5))
@@ -66,13 +61,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
         return view;
     }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_location, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
 
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
