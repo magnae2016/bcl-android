@@ -14,13 +14,15 @@ import android.view.ViewGroup;
 
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Align;
 import com.naver.maps.map.overlay.Marker;
-import com.naver.maps.map.overlay.OverlayImage;
+import com.naver.maps.map.util.FusedLocationSource;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +30,8 @@ import com.naver.maps.map.overlay.OverlayImage;
 public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
     private MapFragment mapFragment;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
+    private FusedLocationSource locationSource;
 
 
     public LocationFragment() {
@@ -48,6 +52,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
+        locationSource = new FusedLocationSource(activity, LOCATION_PERMISSION_REQUEST_CODE);
 
         NaverMapOptions options = new NaverMapOptions()
                 .camera(new CameraPosition(new LatLng(37.503198, 126.775964), 11.5))
@@ -63,7 +68,21 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (locationSource.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
+            return;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
+
+        naverMap.setLocationSource(locationSource);
+
+        UiSettings uiSettings = naverMap.getUiSettings();
+        uiSettings.setLocationButtonEnabled(true);
+        naverMap.setLocationTrackingMode(LocationTrackingMode.Face);
 
         Marker markerAA = new Marker();
         markerAA.setPosition(new LatLng(37.490072, 126.744688));
