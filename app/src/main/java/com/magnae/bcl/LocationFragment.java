@@ -1,17 +1,16 @@
 package com.magnae.bcl;
 
 
+import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.LocationTrackingMode;
@@ -22,7 +21,6 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Align;
 import com.naver.maps.map.overlay.Marker;
-import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.util.MarkerIcons;
 
@@ -33,6 +31,7 @@ import java.util.concurrent.Executors;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +41,8 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     private MapFragment mapFragment;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
+    CoordinatorLayout coordinatorLayout;
+    private BottomSheetBehavior<View> persistentBottomSheet;
 
 
     public LocationFragment() {
@@ -73,6 +74,19 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         activity.getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
 
         mapFragment.getMapAsync(this);
+
+        coordinatorLayout = (CoordinatorLayout) view.findViewById(R.id.coordinator_layout);
+        final View bottomSheet = coordinatorLayout.findViewById(R.id.bottom_sheet);
+        persistentBottomSheet = BottomSheetBehavior.from(bottomSheet);
+        persistentBottomSheet.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+            }
+        });
 
         return view;
     }
