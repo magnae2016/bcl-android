@@ -67,6 +67,16 @@
 
     </RelativeLayout>
 
+    <com.naver.maps.map.widget.LocationButtonView
+        android:id="@+id/location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="32dp"
+        android:paddingBottom="10dp"
+        app:layout_anchor="@+id/bottom_sheet" />
+
     <LinearLayout
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"

@@ -23,6 +23,7 @@ import com.naver.maps.map.overlay.Align;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.util.MarkerIcons;
+import com.naver.maps.map.widget.LocationButtonView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     private FusedLocationSource locationSource;
     CoordinatorLayout coordinatorLayout;
     private BottomSheetBehavior<View> persistentBottomSheet;
+    private LocationButtonView locationButtonView;
 
 
     public LocationFragment() {
@@ -72,6 +74,8 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         mapFragment = (MapFragment) activity.getSupportFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment = MapFragment.newInstance(options);
         activity.getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
+
+        locationButtonView = view.findViewById(R.id.location_button);
 
         mapFragment.getMapAsync(this);
 
@@ -105,7 +109,8 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         naverMap.setLocationSource(locationSource);
 
         UiSettings uiSettings = naverMap.getUiSettings();
-        uiSettings.setLocationButtonEnabled(true);
+        uiSettings.setLocationButtonEnabled(false);
+        locationButtonView.setMap(naverMap);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Face);
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
