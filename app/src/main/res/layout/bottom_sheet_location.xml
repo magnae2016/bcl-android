@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="부천시립상동도서관"
+            android:textColor="@android:color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/name"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/name"
+            android:text="상동권역"
+            android:textColor="#989898"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/opening_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="4dp"
+            android:text="평일 09:00~22:00, 토/일 09:00~17:00 운영" />
+
+        <TextView
+            android:id="@+id/holiday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/opening_hours"
+            android:text="매주 금요일, 법정공휴일 휴관" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp">
+
+        <ImageButton
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_left_button_state"
+            android:src="@drawable/ic_outline_phone_24px"
+            android:tint="@color/colorPrimary" />
+
+        <ImageButton
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/middle_button_state"
+            android:src="@drawable/ic_outline_share_24px"
+            android:tint="@color/colorPrimary" />
+
+        <ImageButton
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_right_button_state"
+            android:src="@drawable/ic_baseline_center_focus_weak_24px"
+            android:tint="@color/colorPrimary" />
+    </LinearLayout>
+
+</LinearLayout>
