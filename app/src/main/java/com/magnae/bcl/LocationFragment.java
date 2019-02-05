@@ -32,6 +32,7 @@ import java.util.concurrent.Executors;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 /**
@@ -39,6 +40,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
  */
 public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
+    private Toolbar myToolbar;
     private MapFragment mapFragment;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
@@ -64,7 +66,10 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
+        myToolbar = (Toolbar) view.findViewById(R.id.my_toolbar);
+
         AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(myToolbar);
         locationSource = new FusedLocationSource(activity, LOCATION_PERMISSION_REQUEST_CODE);
 
         NaverMapOptions options = new NaverMapOptions()
