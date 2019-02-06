@@ -82,4 +82,166 @@
             android:tint="@color/colorPrimary" />
     </LinearLayout>
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inset_border_top_thin"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+        android:paddingVertical="@dimen/activity_vertical_margin"
+        android:shrinkColumns="1"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주소"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="경기 부천시 상이로 12"
+                android:textColor="#333333" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:drawableLeft="@drawable/jibun"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:text="상동 620-4 (우)14594" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:text="영업시간"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="매일 09:00~22:00, 토/일 09:00~17:00"
+                android:textColor="#333333" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="휴관일"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="매주 금요일, 법정 공휴일"
+                android:textColor="#333333" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전화번호"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:text="032-625-4705"
+                android:textColor="#333333"
+                android:textColorLink="#0f69ce" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홈페이지"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:text="http://www.bcl.go.kr"
+                android:textColor="#333333"
+                android:textColorLink="#0f69ce" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="열람실"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="46좌석"
+                android:textColor="#333333" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="자료실"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23좌석"
+                android:textColor="#333333" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주차"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가능"
+                android:textColor="#333333" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:lineSpacingExtra="4dp"
+                android:text="40대의 주차공간이 마련되어 있습니다.\n주차공간이 부족하오니 대중교통을 이용해 주십시오.\n차량 10부제가 운영되고 있습니다.\n오시는날 날짜의 끝자리수와 차량번호 끝자리가 겹치는 차량은 주차 불가합니다." />
+
+        </TableRow>
+
+    </TableLayout>
+
 </LinearLayout>
