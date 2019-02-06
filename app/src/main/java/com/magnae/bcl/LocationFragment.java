@@ -87,15 +87,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         coordinatorLayout = (CoordinatorLayout) view.findViewById(R.id.coordinator_layout);
         final View bottomSheet = coordinatorLayout.findViewById(R.id.bottom_sheet);
         persistentBottomSheet = BottomSheetBehavior.from(bottomSheet);
-        persistentBottomSheet.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-            }
-        });
 
         return view;
     }
@@ -117,6 +108,28 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         uiSettings.setLocationButtonEnabled(false);
         locationButtonView.setMap(naverMap);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Face);
+
+        persistentBottomSheet.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
+                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                    locationButtonView.setMap(null);
+                }
+
+                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                    locationButtonView.setMap(naverMap);
+                }
+
+                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                    locationButtonView.setMap(naverMap);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+            }
+        });
 
         ExecutorService executor = Executors.newSingleThreadExecutor();
         final Handler handler = new Handler(Looper.getMainLooper());
