@@ -9,10 +9,13 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
@@ -42,6 +45,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
     private Toolbar myToolbar;
+    private TextView myToolbarTextView;
     private MapFragment mapFragment;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
@@ -69,6 +73,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
         myToolbar = (Toolbar) view.findViewById(R.id.my_toolbar);
+        myToolbarTextView = (TextView) view.findViewById(R.id.location_title);
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(myToolbar);
@@ -89,6 +94,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         coordinatorLayout = (CoordinatorLayout) view.findViewById(R.id.coordinator_layout);
         final View bottomSheet = coordinatorLayout.findViewById(R.id.bottom_sheet);
         persistentBottomSheet = BottomSheetBehavior.from(bottomSheet);
+        persistentBottomSheet.setState(BottomSheetBehavior.STATE_HIDDEN);
 
         return view;
     }
@@ -150,7 +156,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-
     @Override
     public void onMapReady(@NonNull final NaverMap naverMap) {
 
@@ -175,6 +180,17 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
 
                 if (newState == BottomSheetBehavior.STATE_HIDDEN) {
                     locationButtonView.setMap(naverMap);
+                    myToolbarTextView.setText("도서관을 선택하세요");
+                    String oldMarkerTag;
+                    if (oldMarker.getTag() != null) {
+                        oldMarkerTag = oldMarker.getTag().toString();
+                        oldMarker.setIcon(getOverlayImage(oldMarkerTag, false));
+                        oldMarker.setWidth(60);
+                        oldMarker.setHeight(68);
+                    }
+                    CameraUpdate cameraUpdate = CameraUpdate.toCameraPosition(new CameraPosition(new LatLng(37.503198, 126.775964), 11.5))
+                            .animate(CameraAnimation.Easing);
+                    naverMap.moveCamera(cameraUpdate);
                 }
             }
 
@@ -191,6 +207,7 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         final Overlay.OnClickListener listener = new Overlay.OnClickListener() {
             @Override
             public boolean onClick(@NonNull Overlay overlay) {
+                persistentBottomSheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
                 String oldMarkerTag;
                 if (oldMarker.getTag() != null) {
@@ -201,10 +218,15 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
                 }
 
                 Marker marker = (Marker) overlay;
+                myToolbarTextView.setText(marker.getCaptionText());
                 String newMarkerTag = marker.getTag().toString();
                 marker.setIcon(getOverlayImage(newMarkerTag, true));
                 marker.setWidth(110);
                 marker.setHeight(124);
+
+                CameraUpdate cameraUpdate = CameraUpdate.toCameraPosition(new CameraPosition(marker.getPosition(), 16.0))
+                        .animate(CameraAnimation.Easing);
+                naverMap.moveCamera(cameraUpdate);
 
                 oldMarker = marker;
                 return true;
