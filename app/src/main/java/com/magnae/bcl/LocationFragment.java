@@ -160,6 +160,9 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull final NaverMap naverMap) {
 
         naverMap.setLocationSource(locationSource);
+        naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, true);
+        naverMap.setIndoorEnabled(true);
+        naverMap.setLightness(0.2f);
 
         UiSettings uiSettings = naverMap.getUiSettings();
         uiSettings.setLocationButtonEnabled(false);
@@ -349,6 +352,8 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
                     marker.setSubCaptionTextSize(10);
                     marker.setIconPerspectiveEnabled(true);
                     marker.setIcon(getOverlayImage(marker.getTag().toString(), false));
+                    marker.setHideCollidedCaptions(true);
+                    marker.setHideCollidedSymbols(true);
                     marker.setWidth(60);
                     marker.setHeight(68);
                     marker.setOnClickListener(listener);
