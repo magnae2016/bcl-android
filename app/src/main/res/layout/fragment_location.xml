@@ -11,7 +11,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:gravity="top"
         android:orientation="vertical">
 
@@ -20,62 +19,73 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginRight="13dp"
-            android:layout_marginBottom="17dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="2dp"
-            card_view:cardPreventCornerOverlap="false">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:id="@+id/menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="15sp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginRight="13dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_menu_24dp" />
-
-                <TextView
-                    android:id="@+id/info_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="시립 도서관 검색"
-                    android:textColor="#989898"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
     </RelativeLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/inset_border_bottom_thin">
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginRight="8dp"
+                android:height="36dp"
+                android:background="@drawable/location_toolbar_button"
+                android:drawableLeft="@drawable/ic_format_list_bulleted_black_24dp"
+                android:drawablePadding="4dp"
+                android:paddingHorizontal="8dp"
+                android:text="목록"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/location_title"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/location_toolbar_textview"
+                android:gravity="center"
+                android:lineHeight="0dp"
+                android:lineSpacingExtra="0dp"
+                android:text="도서관을 선택하세요"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.naver.maps.map.widget.LocationButtonView
+        android:id="@+id/location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="32dp"
+        android:paddingBottom="10dp"
+        app:layout_anchor="@+id/bottom_sheet" />
 
     <LinearLayout
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#FFFFFF"
+        android:elevation="8dp"
         android:orientation="vertical"
-        app:behavior_fitToContents="true"
         app:behavior_hideable="true"
-        app:behavior_skipCollapsed="true"
+        app:behavior_peekHeight="158dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <androidx.core.widget.NestedScrollView
